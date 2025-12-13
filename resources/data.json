@@ -1,0 +1,11 @@
+{
+  "signUpPayload": {
+    "username": "new_user_123",
+    "password": "123654",
+    "confirmPassword": "123654",
+    "email": "k1k1k@aswa.com",
+    "firstName": "hghghg",
+    "lastName": "hjhjhh",
+    "mobileNumber": "1236549877"
+  }
+}

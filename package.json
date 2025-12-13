@@ -1,0 +1,22 @@
+{
+  "name": "api-automation-bdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cucumber-js Feature/**/*.feature --require Feature/StepDefinition/**/*.js --tags=@registration"
+  },
+  "keywords": [],
+  "author": "Akash",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.3.0",
+    "playwright": "^1.57.0"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.57.0",
+    "chai": "^6.2.1",
+    "dotenv": "^17.2.3"
+  }
+}

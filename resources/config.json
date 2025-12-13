@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://swift.techwithjatin.com",
+  "endpoints": {
+    "signup": "/api/auth/signup"
+  }
+}
