@@ -7,5 +7,10 @@
     "firstName": "hghghg",
     "lastName": "hjhjhh",
     "mobileNumber": "1236549877"
+  },
+
+  "loginPayload": {
+    "username": "AKAlpha",
+    "password": "123456"
   }
 }
