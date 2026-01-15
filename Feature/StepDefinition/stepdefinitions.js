@@ -20,28 +20,46 @@ Given(
 );
 
 When(
-  "I send a POST request to signup with the payload",
+  "I send a POST request to {string} with the payload",
   { timeout: 10000 },
-  async function () {
-    this.apiContext = await request.newContext({
-      baseURL: config.baseUrl,
-    });
-    let endpoint = config.endpoints.signup;
-    this.response = await this.apiContext.post(endpoint, {
-      data: this.payload,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    this.responseText = await this.response.text();
-    console.log(await this.response.text());
+  async function (action) {
+    if (action === "signup") {
+      this.apiContext = await request.newContext({
+        baseURL: config.baseUrl,
+      });
+      let endpoint = config.endpoints.signup;
+      this.response = await this.apiContext.post(endpoint, {
+        data: this.payload,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      this.responseText = await this.response.text();
+      console.log(await this.response.text());
+    } else if (action === "login") {
+      this.apiContext = await request.newContext({
+        baseURL: config.baseUrl,
+      });
+      let endpoint = config.endpoints.login;
+      this.response = await this.apiContext.post(endpoint, {
+        data: dataStore.loginPayload,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
   }
 );
 
-Then("the response status should be {int}", async function (int) {
-  expect(this.response.status()).to.equal(int);
+Then("the response status should be {int}", async function (statusCode) {
+  expect(this.response.status()).to.equal(statusCode);
 });
 
-Then("the response text should have {string}", async function (string) {
-  expect(this.responseText).to.include(string);
+Then("the response body should have {string}", async function (element) {
+  if (element === "token") {
+    const body = await this.response.json();
+    expect(body).to.have.property(element);
+  } else {
+    expect(this.responseText).to.include(element);
+  }
 });
